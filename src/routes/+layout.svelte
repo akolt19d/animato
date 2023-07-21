@@ -8,40 +8,35 @@
 
 	import { page } from '$app/stores';
 	import { AppShell, AppBar, AppRail, AppRailAnchor} from '@skeletonlabs/skeleton';
-
-	console.log($page)
+	import 'iconify-icon';
 </script>
 
-<AppShell>
+<AppShell slotSidebarLeft="w-24">
 	<svelte:fragment slot="header">
 		<AppBar gridColumns="grid-cols-3" slotDefault="place-self-center place-" slotTrail="place-content-end" padding="p-5">
 			<svelte:fragment slot="lead">
 				<a href="/">animato</a>
 			</svelte:fragment>
-			<!-- <TabGroup>
-				<TabAnchor href="/animations" selected>
-					<svelte:fragment slot="lead">Animations</svelte:fragment>
-				</TabAnchor>
-				<TabAnchor href="/models">
-					<svelte:fragment slot="lead">Models</svelte:fragment>
-				</TabAnchor>
-			</TabGroup> -->
+			<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
+				<input type="search" name="searchbar" class="input w-80 h-10 p-2 outline-none" placeholder="Search">
+				<button class="variant-soft-primary"><iconify-icon icon="mingcute:search-3-line"></iconify-icon></button>
+			</div>
 			<svelte:fragment slot="trail">
 				<div class="flex flex-row gap-4">
-					<button class="btn variant-filled-secondary">log in</button>
-					<button class="btn variant-filled-primary">sign in</button>
+					<button class="btn variant-ghost-secondary">log in</button>
+					<button class="btn variant-ghost-primary">sign in</button>
 				</div>
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
 	<svelte:fragment slot="sidebarLeft">
-		<AppRail>
+		<AppRail width="w-auto">
 			<AppRailAnchor href="/animations" selected={$page.route.id === "/animations"}>
-				<svelte:fragment slot="lead">icon1</svelte:fragment>
+				<svelte:fragment slot="lead"><iconify-icon icon="mingcute:run-fill" width="32" height="32"></iconify-icon></svelte:fragment>
 				<span>Animations</span>
 			</AppRailAnchor>
 			<AppRailAnchor href="/models" selected={$page.route.id === "/models"}>
-				<svelte:fragment slot="lead">icon2</svelte:fragment>
+				<svelte:fragment slot="lead"><iconify-icon icon="mingcute:box-3-line" width="32" height="32"></iconify-icon></svelte:fragment>
 				<span>Models</span>
 			</AppRailAnchor>
 		</AppRail>
