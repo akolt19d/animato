@@ -7,8 +7,12 @@
 	import '../app.postcss';
 
 	import { page } from '$app/stores';
-	import { AppShell, AppBar, AppRail, AppRailAnchor} from '@skeletonlabs/skeleton';
+	import SearchBar from '../lib/components/SearchBar.svelte';
+	import { AppShell, AppBar, AppRail, AppRailAnchor, storePopup} from '@skeletonlabs/skeleton';
+	import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floating-ui/dom';
 	import 'iconify-icon';
+
+	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 </script>
 
 <AppShell slotSidebarLeft="w-24">
@@ -17,14 +21,11 @@
 			<svelte:fragment slot="lead">
 				<a href="/">animato</a>
 			</svelte:fragment>
-			<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
-				<input type="search" name="searchbar" class="input w-80 h-10 p-2 outline-none" placeholder="Search">
-				<button class="variant-soft-primary"><iconify-icon icon="mingcute:search-3-line"></iconify-icon></button>
-			</div>
+			<SearchBar/>
 			<svelte:fragment slot="trail">
 				<div class="flex flex-row gap-4">
-					<button class="btn variant-ghost-secondary">log in</button>
-					<button class="btn variant-ghost-primary">sign in</button>
+					<button class="btn variant-ringed-primary">log in</button>
+					<button class="btn variant-filled-secondary">sign in</button>
 				</div>
 			</svelte:fragment>
 		</AppBar>
@@ -41,5 +42,7 @@
 			</AppRailAnchor>
 		</AppRail>
 	</svelte:fragment>
-	<slot />
+	<div class="container h-full mx-auto flex justify-center items-center">
+		<slot />
+	</div>
 </AppShell>
