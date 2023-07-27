@@ -42,7 +42,10 @@
 			</AppRailAnchor>
 		</AppRail>
 	</svelte:fragment>
-	<div class="container h-full mx-auto flex justify-center items-center">
-		<slot />
-	</div>
+	<svelte:fragment slot="pageHeader">
+		<div class="border-b border-surface-200-700-token pt-8 pb-4 px-4 flex">
+			<h2 class="h2">Explore the {$page.route.id.slice(1)}!</h2>
+		</div>
+	</svelte:fragment>
+	<slot />
 </AppShell>
