@@ -45,7 +45,7 @@
 		<div class="pt-16 px-4 flex justify-between w-4/5 mx-auto items-end relative">
 			<h2 class="h2">Explore the {$page.route.id.slice(9)}!</h2>
 			<div>
-				<button class="btn-icon variant-ghost-secondary"><iconify-icon icon="mingcute:sort-descending-fill">Sort</iconify-icon></button>
+				<button class="btn-icon"><iconify-icon icon="mingcute:sort-descending-line" width="24">Sort</iconify-icon></button>
 			</div>
 		</div>
 		<!-- <hr class=" w-5/6 mx-auto"> -->
