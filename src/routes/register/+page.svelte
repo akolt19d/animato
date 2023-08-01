@@ -1,12 +1,18 @@
+<script>
+    export let form;
+
+    console.log(form ? form : "No data has been sent")
+</script>
+
 <section class="container flex justify-center items-center h-full mx-auto">
     <div class="card p-12 relative">
         <a href="/" class="btn-icon absolute left-1 top-1"><iconify-icon icon="mingcute:arrow-left-fill" width="24"></iconify-icon></a>
         <h1 class="h2 px-4">Create an account</h1>
         <hr class="my-6">
-        <form action="GET">
+        <form method="POST">
             <label for="nick" class="label">
-                <span>Nick</span><br>
-                <input type="text" name="nick" class="input w-80 h-10 p-2">
+                <span>Username</span><br>
+                <input type="text" name="username" class="input w-80 h-10 p-2">
             </label>
             <br>
             <label for="email" class="label">

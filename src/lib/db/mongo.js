@@ -14,4 +14,4 @@ export function startMongo() {
     return client.connect()
 }
 
-export default client.db()
+export const db = client.db("animato")
