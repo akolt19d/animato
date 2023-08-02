@@ -45,11 +45,20 @@ export const actions = {
         if(flag)
         {
             const result = await users.insertOne(userData)
-            return result.acknowledged
+            return {
+                variant: "success",
+                header: "Your account has been created!",
+                message: "Go to the login page and sign in.",
+                link: "/login"
+            }
         }
         else
         {
-            return errorMessage;
+            return {
+                variant: "error",
+                header: "Something went wrong.",
+                message: errorMessage
+            }
         }    
     }
 }

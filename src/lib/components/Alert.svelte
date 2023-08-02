@@ -1,5 +1,5 @@
 <script>
-    export let variant, header, message;
+    export let variant, header, message, link;
 
     import { fly, blur } from 'svelte/transition';
 </script>
@@ -9,4 +9,10 @@
         <h4 class="h4">{header}</h4>
         <p>{message}</p>
     </div>    
+    <div class="alert-actions">
+        {#if link}
+            <a href={link} class={`btn variant-filled-${variant}`}>Log in</a>
+        {/if}
+        <button class={`btn-icon variant-filled-${variant}`} on:click>X</button>
+    </div>
 </aside>
