@@ -1,0 +1,12 @@
+<script>
+    export let variant, header, message;
+
+    import { fly, blur } from 'svelte/transition';
+</script>
+
+<aside class={`alert variant-ghost-${variant} fixed top-5 right-5 px-8 py-4`} in:fly|local={{ duration: 200, x: -100 }} out:blur|local={{ duration: 200 }}>
+    <div class="alert-message">
+        <h4 class="h4">{header}</h4>
+        <p>{message}</p>
+    </div>    
+</aside>

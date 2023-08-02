@@ -9,9 +9,6 @@
 	import { page } from '$app/stores';
 	import SearchBar from '$lib/components/SearchBar.svelte';
 	import { AppShell, AppBar, AppRail, AppRailAnchor, storePopup} from '@skeletonlabs/skeleton';
-	import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floating-ui/dom';
-
-	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 </script>
 
 <AppShell slotSidebarLeft="w-24">
