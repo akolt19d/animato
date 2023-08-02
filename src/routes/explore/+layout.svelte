@@ -24,7 +24,7 @@
 			<svelte:fragment slot="trail">
 				<div class="flex flex-row gap-4">
 					<a href="/login" class="btn variant-ringed-primary">log in</a>
-					<a href="/register" class="btn variant-filled-secondary">sign in</a>
+					<a href="/register" class="btn variant-filled-secondary">sign up</a>
 				</div>
 			</svelte:fragment>
 		</AppBar>

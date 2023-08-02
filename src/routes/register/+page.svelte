@@ -30,7 +30,7 @@
                 <input type="password" name="r-password" class="input w-80 h-10 p-2"><br>
             </label>
             <br>
-            <button type="submit" class="btn variant-filled-secondary my-4">Sign in</button><br>
+            <button type="submit" class="btn variant-filled-secondary my-4">Sign up</button><br>
             <a href="/login" class="anchor">Already have an account?</a>
         </form>
     </div>
