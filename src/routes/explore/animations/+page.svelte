@@ -1,5 +1,6 @@
 <script>
-    import PreviewCard from "../../../lib/components/PreviewCard.svelte";
+    export let data;
+    import PreviewCard from "$lib/components/PreviewCard.svelte";
 
     const card = {
         title: "Title",
@@ -7,6 +8,12 @@
         date: "1 year ago",
         rating: "4,5"
     }
+
+    $:User = data?.user
+
+    setTimeout(() => {
+        console.log(User)
+    }, 200)
 </script>
 
 <div class="flex w-5/6 justify-center flex-row flex-wrap p-7 mx-auto gap-10">	

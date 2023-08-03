@@ -28,6 +28,7 @@
 	"type": "module",
 	"dependencies": {
 		"iconify-icon": "^1.0.8",
+		"jsonwebtoken": "^9.0.1",
 		"mongodb": "^5.7.0"
 	}
 }

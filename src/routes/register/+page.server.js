@@ -1,4 +1,5 @@
 import { users } from '$db/users'
+import { fail } from '@sveltejs/kit'
 
 let errorMessage = ""
 
@@ -54,11 +55,11 @@ export const actions = {
         }
         else
         {
-            return {
+            return fail(400, {
                 variant: "error",
                 header: "Something went wrong.",
                 message: errorMessage
-            }
+            })
         }    
     }
 }

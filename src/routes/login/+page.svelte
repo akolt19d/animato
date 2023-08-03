@@ -1,9 +1,15 @@
+<script>
+    export let form;
+
+    console.log(form?.message)
+</script>
+
 <section class="container flex justify-center items-center h-full mx-auto">
     <div class="card p-12 relative">
         <a href="/" class="btn-icon absolute left-1 top-1"><iconify-icon icon="mingcute:arrow-left-fill" width="24"></iconify-icon></a>
         <h1 class="h2 px-4">Log into your account</h1>
         <hr class="my-6">
-        <form action="GET">
+        <form method="POST">
             <label for="email" class="label">
                 <span>E-mail</span><br>
                 <input type="email" name="email" class="input w-80 h-10 p-2">
