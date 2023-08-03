@@ -7,7 +7,7 @@ export async function load({ cookies }) {
     const authToken = cookies.get("authToken")
     if(!authToken)
         return {clearUser: true}
-    return {clearUser: false}
+    else throw redirect(300, "/")
 }
 
 export const actions = {
@@ -33,7 +33,11 @@ export const actions = {
             throw redirect(302, "/")
         }
         else {
-            return fail(400, { message: "Incorrect login data." })
+            return fail(400, {
+                variant: "error",
+                header: "Error",
+                message: "Incorrect login data."
+            })
         }
     }
 }

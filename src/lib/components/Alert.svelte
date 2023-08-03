@@ -1,5 +1,5 @@
 <script>
-    export let variant, header, message, link;
+    export let variant, header, message, link = false;
 
     import { fly, blur } from 'svelte/transition';
 </script>

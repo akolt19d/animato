@@ -1,7 +1,15 @@
 import { users } from '$db/users'
-import { fail } from '@sveltejs/kit'
+import { fail, redirect } from '@sveltejs/kit'
 
 let errorMessage = ""
+
+export async function load({ cookies }) {
+    const authToken = cookies.get("authToken")
+    if(authToken)
+        throw redirect(300, "/")
+
+    return {}
+}
 
 async function verifyData(data) {
     const username = data.get('username')

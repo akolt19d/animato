@@ -1,7 +1,13 @@
 <script>
     export let form;
+    import Alert from '$lib/components/Alert.svelte';
 
-    console.log(form?.message)
+    let visible = false
+
+    setTimeout(() => {
+        visible = form ? true : false
+    }, 200)
+    // console.log(form?.message)
 </script>
 
 <section class="container flex justify-center items-center h-full mx-auto">
@@ -24,4 +30,7 @@
             <a href="/register" class="anchor">Don't have an account?</a>
         </form>
     </div>
+    {#if visible}
+        <Alert {...form} on:click={() => { visible = false }}/>
+    {/if}
 </section>
