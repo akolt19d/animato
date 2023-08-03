@@ -1,14 +1,15 @@
 <script>
-	// The ordering of these imports is critical to your app working properly
-	import '../../theme.postcss';
-	// If you have source.organizeImports set to true in VSCode, then it will auto change this ordering
-	import '@skeletonlabs/skeleton/styles/skeleton.css';
-	// Most of your app wide CSS should be put in this file
-	import '../../app.postcss';
-
+	export let data;
 	import { page } from '$app/stores';
 	import SearchBar from '$lib/components/SearchBar.svelte';
+	import UserNavbarArea from '$lib/components/UserNavbarArea.svelte';
 	import { AppShell, AppBar, AppRail, AppRailAnchor, storePopup} from '@skeletonlabs/skeleton';
+
+	$:user = data?.user
+
+	// setTimeout(() => {
+	// 	console.log(user)
+	// }, 50)
 </script>
 
 <AppShell slotSidebarLeft="w-24">
@@ -19,10 +20,14 @@
 			</svelte:fragment>
 			<SearchBar/>
 			<svelte:fragment slot="trail">
+				{#if user}
+				<UserNavbarArea { user } />
+				{:else}	
 				<div class="flex flex-row gap-4">
 					<a href="/login" class="btn variant-ringed-primary">log in</a>
 					<a href="/register" class="btn variant-filled-secondary">sign up</a>
 				</div>
+				{/if}
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>

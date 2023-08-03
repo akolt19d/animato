@@ -7,10 +7,11 @@
 	import '../app.postcss';
 
 	import 'iconify-icon';
-	import { storePopup} from '@skeletonlabs/skeleton';
+	import { storePopup, autoModeWatcher } from '@skeletonlabs/skeleton';
 	import { computePosition, autoUpdate, offset, shift, flip, arrow, hide } from '@floating-ui/dom';
 
 	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow, hide });
 </script>
 
+<svelte:head>{@html `<script>${autoModeWatcher.toString()} autoModeWatcher();</script>`}</svelte:head>
 <slot />
