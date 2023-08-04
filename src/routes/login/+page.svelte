@@ -1,12 +1,18 @@
 <script>
     export let form;
+    export let data;
     import Alert from '$lib/components/Alert.svelte';
+    import User from '$stores';
 
     let visible = false
 
     setTimeout(() => {
         visible = form ? true : false
     }, 200)
+
+    if(data) {
+        User.set(undefined)
+    }
 </script>
 
 <section class="container flex justify-center items-center h-full mx-auto">
