@@ -22,7 +22,7 @@
         {
             text: "Log out",
             icon: "mingcute:exit-line",
-            link: "/login"
+            link: "/logout"
         },
     ]
 </script>
@@ -33,7 +33,7 @@
         <ul class="list-nav">
             {#each settingsList as el}
                 <li>
-                    <a href={el.link}>
+                    <a data-sveltekit-preload-data={ el.link == "/logout" ? "off" : "hover" } href={el.link}>
                         <iconify-icon icon={el.icon}></iconify-icon>
                         <span>{el.text}</span>
                     </a>
