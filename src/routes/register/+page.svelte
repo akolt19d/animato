@@ -1,8 +1,8 @@
 <script>
     export let form;
     import Alert from '$lib/components/Alert.svelte';
-
-    console.log(form ? form : "No data has been sent")
+    import { blur } from 'svelte/transition';
+    import { popup } from '@skeletonlabs/skeleton';
 
     let username = ""
     let email = ""
@@ -12,6 +12,13 @@
     let invalid = ""
     let visible = false
     let disable = true
+    let usernameTaken = false
+
+    const usernamePopup = {
+        event: "hover",
+        target: "usernamePopup",
+        placement: "top"
+    }
 
     setTimeout(() => {
         visible = form ? true : false
@@ -26,7 +33,24 @@
         }
     }
 
-    $: if(username.length > 0 && email.length > 0 && password.length > 0 && password == repeat) {
+    async function filterUsers() {
+        const res = await fetch("/api/usernameAvailable", {
+            method: "POST",
+            body: JSON.stringify({ username }),
+            headers: {
+                "Content-Type": "application-json"
+            }
+        })
+        usernameTaken = await res.json()
+    }
+
+    $: if(username.length > 0){
+        filterUsers()
+    } else {
+        usernameTaken = false
+    }
+
+    $: if(username.length > 0 && email.length > 0 && password.length > 0 && password == repeat && !usernameTaken) {
         disable = false
     } else {
         disable = true
@@ -41,7 +65,12 @@
         <form method="POST">
             <label for="nick" class="label">
                 <span>Username</span><br>
-                <input type="text" name="username" class="input w-80 h-10 p-2" bind:value={username} required>
+                <div class="input-group input-group-divider grid-cols-[auto_1fr] relative">
+                    <input type="text" name="username" class={`input w-80 h-10 p-2 outline-none${usernameTaken ? " input-error" : ""}`} maxlength="25" bind:value={username} required>
+                    {#if username.length > 0}    
+                    <div class={`input-group-shim variant-filled-${usernameTaken ? "error" : "success"} absolute right-0 h-full`} transition:blur={{ duration: 300 }} use:popup={usernamePopup}>{usernameTaken ? "X" : "✓"}</div>
+                    {/if}
+                </div>
             </label>
             <br>
             <label for="email" class="label">
@@ -67,3 +96,9 @@
     <Alert {...form} on:click={() => { visible = false }}/>
     {/if}
 </section>
+<div class={username.length > 0 ? "" : "opacity-0"}>
+    <div class={`card p-4 variant-filled-${usernameTaken ? "error" : "success"}`} data-popup="usernamePopup">
+        <p>This username is {usernameTaken ? "already taken" : "available"}.</p>
+        <div class={`arrow variant-filled-${usernameTaken ? "error" : "success"}`} />
+    </div>
+</div>
