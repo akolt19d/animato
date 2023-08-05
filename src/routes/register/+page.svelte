@@ -12,7 +12,7 @@
     let invalid = ""
     let visible = false
     let disable = true
-    let usernameTaken = false
+    $: usernameTaken = false
 
     const usernamePopup = {
         event: "hover",

@@ -1,9 +1,8 @@
 <script>
 	export let data;
 	import { page } from '$app/stores';
-	import SearchBar from '$lib/components/SearchBar.svelte';
-	import UserNavbarArea from '$lib/components/UserNavbarArea.svelte';
-	import { AppShell, AppBar, AppRail, AppRailAnchor, storePopup} from '@skeletonlabs/skeleton';
+	import NavBar from '$lib/components/NavBar.svelte';
+	import { AppShell, AppRail, AppRailAnchor, storePopup} from '@skeletonlabs/skeleton';
 
 	$:user = data?.user
 
@@ -14,22 +13,7 @@
 
 <AppShell slotSidebarLeft="w-24">
 	<svelte:fragment slot="header">
-		<AppBar gridColumns="grid-cols-3" slotDefault="place-self-center place-" slotTrail="place-content-end" padding="p-5">
-			<svelte:fragment slot="lead">
-				<a href="/">animato</a>
-			</svelte:fragment>
-			<SearchBar/>
-			<svelte:fragment slot="trail">
-				{#if user}
-				<UserNavbarArea { user } />
-				{:else}	
-				<div class="flex flex-row gap-4">
-					<a href="/login" class="btn variant-ringed-primary">log in</a>
-					<a href="/register" class="btn variant-filled-secondary">sign up</a>
-				</div>
-				{/if}
-			</svelte:fragment>
-		</AppBar>
+		<NavBar {user} />
 	</svelte:fragment>
 	<svelte:fragment slot="sidebarLeft">
 		<AppRail width="w-auto">
