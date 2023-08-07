@@ -11,6 +11,6 @@
     }
 </script>
 
-<div class="container mx-auto">
+<div class="container mx-auto py-12">
     <svelte:component this={components[$selectedOption]} />
 </div>

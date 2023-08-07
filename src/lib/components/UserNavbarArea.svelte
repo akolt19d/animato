@@ -15,6 +15,11 @@
             link: "/account"
         },
         {
+            text: "Notifications",
+            icon: "mingcute:bell-ringing-line",
+            link: "/"
+        },
+        {
             text: "Upload",
             icon: "mingcute:upload-2-line",
             link: "/upload"
@@ -28,7 +33,7 @@
 </script>
 
 <div class="flex gap-4 items-center">
-    <button class="btn-icon h-min active:rotate-180" use:popup={settingsPopup}><iconify-icon icon="mingcute:settings-5-line" width="32"></iconify-icon></button>
+    <!-- <button class="btn-icon h-min active:rotate-180" use:popup={settingsPopup}><iconify-icon icon="mingcute:settings-5-line" width="32"></iconify-icon></button> -->
     <div class="card p-4 shadow-xl variant-filled-surface" data-popup="settingsPopup">
         <ul class="list-nav">
             {#each settingsList as el}
@@ -43,7 +48,9 @@
         <div class="flex justify-center pt-2">
             <LightSwitch />
         </div>
-        <div class="arrow variant-filled-surface" />
+        <!-- <div class="arrow variant-filled-surface" /> -->
     </div>
-    <Avatar src={user.avatar_url} initials={user.username.slice(0, 1)} background="bg-gradient-to-br variant-gradient-primary-secondary" rounded="rounded-full" />
+    <button use:popup={settingsPopup}>
+        <Avatar src={user.avatar_url} initials={user.username.slice(0, 1)} background="bg-gradient-to-br variant-gradient-primary-secondary" rounded="rounded-full" border="border-2 border-surface-400-500-token hover:border-primary-400-500-token" />
+    </button>
 </div>
