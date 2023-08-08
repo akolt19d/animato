@@ -4,8 +4,13 @@
     import selectedOption from "./store"
     import NavBar from "$lib/components/NavBar.svelte";
 	import { ListBox, ListBoxItem } from "@skeletonlabs/skeleton";
+	import { setContext } from "svelte";
 
     $: user = data?.user
+
+	$: {
+		setContext('user', user)
+	}
 
     let selected = "userInfo";
 	$: {
