@@ -11,11 +11,11 @@
         <div class="h-8 aspect-square bg-gradient-to-br variant-gradient-primary-secondary rounded-full"></div>
     </div>
     <div class="p-4">
-        <p class="text-xs text-opacity-50 text-white">
+        <p class="text-xs text-opacity-50 text-surface-900-50-token">
             { description }
         </p>
     </div>
-    <div class="card-footer flex items-end relative justify-between text-opacity-30 text-white transition-all text-sm">
+    <div class="card-footer flex items-end relative justify-between text-surface-500-400-token text-opacity-30 transition-all text-sm">
         <hr class="mx-auto w-5/6 absolute top-0">
         <p>{ date }</p>
         <p>★ { rating }</p>

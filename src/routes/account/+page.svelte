@@ -11,6 +11,6 @@
     }
 </script>
 
-<div class="container mx-auto py-12">
+<div class="container h-full mx-auto py-6 border-surface-200-700-token">
     <svelte:component this={components[$selectedOption]} />
 </div>
