@@ -47,7 +47,8 @@ export const actions = {
             username: formData.get('username'),
             email: formData.get('email'),
             password: formData.get('password'),
-            avatar_url: ""
+            avatar_url: "",
+            initials: formData.get('username').slice(0, 2).toUpperCase()
         }
 
         const flag = await verifyData(formData)

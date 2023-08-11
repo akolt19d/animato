@@ -21,7 +21,8 @@ export async function handle({ event, resolve }) {
             const userData = {
                 username: user.username,
                 email: user.email,
-                avatar_url: user.avatar_url
+                avatar_url: user.avatar_url,
+                initials: user.initials
             }
             event.locals.user = userData
         }

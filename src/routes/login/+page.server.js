@@ -24,7 +24,8 @@ export const actions = {
             const userAttemptingLogin = {
                 username: user.username,
                 email: user.email,
-                avatar_url: user.avatar_url
+                avatar_url: user.avatar_url,
+                initials: user.initials
             }
             const authToken = jwt.sign({user: userAttemptingLogin}, RSA_KEY, {expiresIn: "24h"})
 

@@ -51,6 +51,6 @@
         <!-- <div class="arrow variant-filled-surface" /> -->
     </div>
     <button use:popup={settingsPopup}>
-        <Avatar src={user.avatar_url} initials={user.username.slice(0, 1)} background="bg-gradient-to-br variant-gradient-primary-secondary" rounded="rounded-full" border="border-2 border-surface-400-500-token hover:border-primary-400-500-token" />
+        <Avatar src={user.avatar_url} initials={user.initials} background="bg-gradient-to-br variant-gradient-primary-secondary" rounded="rounded-full" border="border-2 border-surface-400-500-token hover:border-primary-400-500-token" />
     </button>
 </div>

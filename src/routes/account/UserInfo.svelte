@@ -12,14 +12,7 @@
     let handle = `@${user?.username}`
     let email = user?.email
     let avatarUrl = user?.avatar_url
-    let avatarColor = "#aeaeae"
-    let initials = user?.username.slice(0, 1)
-
-    $: avatarBg = `bg-[${avatarColor}]`
-
-    $: {
-        console.log(avatarBg)
-    }
+    let initials = user?.initials
 
     function resetValuesAfterCancel(e) {
         e.preventDefault()
@@ -33,8 +26,7 @@
         e.preventDefault()
         editingAvatar = !editingAvatar
         avatarUrl = user?.avatar_url
-        avatarColor = "#aeaeae"
-        initials = user?.username.slice(0, 1)
+        initials = user?.initials
     }
 </script>
 
@@ -78,18 +70,19 @@
         <h4 class="h4">Avatar</h4>
         <p class="opacity-40">Choose whatever suits you best. You can utilize our built-in default avatar or upload your own.</p>
     </div>
-    <div class="relative mx-auto flex flex-row gap-4">
+    <div class="relative mx-auto flex flex-row gap-8">
         <div>
             <div class="relative">
                 {#if editingAvatar}
                 <div class="w-full h-full absolute z-10 rounded-full bg-black/75 flex justify-center items-center gap-4" transition:blur={{ duration: 200 }}>
                     <button class="btn-icon variant-ghost-primary"><iconify-icon icon="mingcute:upload-2-line"></iconify-icon></button>
-                    <button class="btn-icon variant-ghost-error">x</button>
+                    {#if avatarUrl.length != 0} 
+                    <button class="btn-icon variant-ghost-error" on:click={() => { avatarUrl = "" }}>x</button>
+                    {/if}
                 </div>
                 {/if}
-                <Avatar bind:src={avatarUrl} bind:initials={initials} width="w-72" bind:background={avatarBg} rounded="rounded-full" />
+                <Avatar bind:src={avatarUrl} bind:initials={initials} width="w-72" background="bg-gradient-to-br variant-gradient-primary-secondary" rounded="rounded-full" />
             </div>
-            <p class="h2 mt-2 text-center">Your avatar</p>
             {#if !editingAvatar}
             <button class="btn variant-filled-primary absolute top-0 left-full ml-2 p-2 rounded-full" on:click={ () => { editingAvatar = !editingAvatar } }><iconify-icon icon="mingcute:edit-2-line" width="16"></iconify-icon></button>
             {/if}
@@ -98,18 +91,21 @@
             {#if avatarUrl.length == 0}    
                 <label for="initials" class="label">
                     <span>Initials</span><br>
-                    <input type="text" name="initials" id="initials" class="input w-80 h-10 p-2" bind:value={initials} disabled={!editingAvatar} maxlength="2" on:change={() => { initials = initials.toUpperCase() }}>
+                    <input type="text" name="initials" id="initials" class="input w-80 h-10 p-2" bind:value={initials} disabled={!editingAvatar} maxlength="2">
                 </label>
                 <br>
-                <div class="grid grid-cols-[auto_1fr] gap-2">
-                    <input class="input" type="color" bind:value={avatarColor} disabled={!editingAvatar} on:change={() => { console.log(avatarColor) }} />
-                    <input class="input" type="text" bind:value={avatarColor} readonly tabindex="-1" disabled={!editingAvatar} />
-                </div>
-                <br>
-                {#if editingAvatar}
-                    <button type="submit" class="btn variant-filled-primary" disabled={!editingAvatar}>Save</button>
-                    <button type="reset" class="btn variant-filled-secondary" disabled={!editingAvatar}>Cancel</button>
-                {/if}
+                <!-- <label for="color" class="label">
+                    <span>Avatar color</span><br>
+                    <div class="grid grid-cols-[auto_1fr] gap-2">
+                        <input class="input" id="color" type="color" bind:value={avatarColor} disabled={!editingAvatar} on:change={() => { console.log(avatarColor) }} />
+                        <input class="input" type="text" bind:value={avatarColor} readonly tabindex="-1" disabled={!editingAvatar} />
+                    </div>
+                </label>
+                <br> -->
+            {/if}
+            {#if editingAvatar}
+                <button type="submit" class="btn variant-filled-primary" disabled={!editingAvatar}>Save</button>
+                <button type="reset" class="btn variant-filled-secondary" disabled={!editingAvatar}>Cancel</button>
             {/if}
         </form>
     </div>
