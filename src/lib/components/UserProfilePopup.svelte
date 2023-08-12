@@ -27,7 +27,7 @@
         </span>
     </div>
     <div class="mt-4 flex justify-center">
-        <button class="btn variant-filled-primary text-sm">View profile</button>
+        <button class="btn variant-filled-secondary text-sm">View profile</button>
     </div>
 	<div class="arrow variant-filled-surface" />
 </div>

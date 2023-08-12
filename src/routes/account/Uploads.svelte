@@ -1,11 +1,13 @@
 <script>
     import PreviewCard from "$lib/components/PreviewCard.svelte"
+	import { getContext } from "svelte";
 
     const card = {
         title: "Title",
         description: "Description Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente quasi repellat in officiis nulla cumque iusto asperiores a aspernatur at.",
         date: "1 year ago",
-        rating: "4,5"
+        rating: "4,5",
+        author: getContext("user")
     }
 </script>
 

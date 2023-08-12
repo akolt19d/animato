@@ -1,8 +1,16 @@
 <script>
-    export let title, models, animations, likes, creatorHandle
+    export let title, models, animations, likes, author
+    import { popup } from "@skeletonlabs/skeleton";
+    import UserProfilePopup from "./UserProfilePopup.svelte";
+
+    const popupSettings = {
+        event: "click",
+        target: "popupSettings",
+        placement: "bottom"
+    }
 </script>
 
-<div class="card variant-ghost-surface w-80 h-64 grid grid-rows-[1fr_auto] overflow-hidden card-hover cursor-pointer">
+<div class="card variant-ghost-surface w-80 h-64 grid grid-rows-[1fr_auto] overflow-hidden cursor-pointer">
     <div class="grid grid-rows-2 grid-cols-2 border-b border-surface-400-500-token gap-px">
         {#each Array(4) as _, index (index)}
             <div class="bg-surface-500">
@@ -32,8 +40,9 @@
                 </span>
             </div>
             <div>
-                <span class="anchor">@{ creatorHandle }</span>
+                <span class="hover:anchor" use:popup={popupSettings}>@{ author.username }</span>
             </div>
         </div>
     </div>
 </div>
+<UserProfilePopup target={popupSettings.target} user={author} />

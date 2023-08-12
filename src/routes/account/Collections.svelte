@@ -1,12 +1,13 @@
 <script>
     import CollectionCard from "$lib/components/CollectionCard.svelte";
+    import { getContext } from "svelte";
 
     const cardSettings = {
         title: "Collection",
         animations: "3",
         models: "10",
         likes: "1,2k",
-        creatorHandle: "test"
+        author: getContext("user")
     }
 </script>
 
