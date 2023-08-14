@@ -18,12 +18,7 @@ export async function handle({ event, resolve }) {
 
         if(authToken && claims) {
             const user = await users.findOne({ email: claims.user.email })
-            const userData = {
-                username: user.username,
-                email: user.email,
-                avatar_url: user.avatar_url,
-                initials: user.initials
-            }
+            const { _id, password, ...userData } = user
             event.locals.user = userData
         }
     } finally {

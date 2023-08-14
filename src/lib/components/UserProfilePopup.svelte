@@ -7,7 +7,7 @@
     <div class="text-center flex flex-col items-center">
         <Avatar src={user?.avatar_url} initials={user?.initials} background="bg-gradient-to-br variant-gradient-primary-secondary" rounded="rounded-full" />
         <span class="mt-1 text-sm">{ user?.username }</span>
-        <span class="opacity-40 text-xs">@{ user?.username }</span>
+        <span class="opacity-40 text-xs">@{ user?.handle }</span>
     </div>
     <p class="text-sm my-2 text-center">
         This is a built-in account which allows the creators of the website to test new features :D
@@ -27,7 +27,7 @@
         </span>
     </div>
     <div class="mt-4 flex justify-center">
-        <button class="btn variant-filled-secondary text-sm">View profile</button>
+        <a href={`/profile/${user?.handle}`} class="btn variant-filled-secondary text-sm">View profile</a>
     </div>
 	<div class="arrow variant-filled-surface" />
 </div>

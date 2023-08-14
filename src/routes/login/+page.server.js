@@ -21,12 +21,7 @@ export const actions = {
         const user = await users.findOne({email: loginData.email})
         if(loginData.password == user.password)
         {
-            const userAttemptingLogin = {
-                username: user.username,
-                email: user.email,
-                avatar_url: user.avatar_url,
-                initials: user.initials
-            }
+            const { password, _id, ...userAttemptingLogin } = user
             const authToken = jwt.sign({user: userAttemptingLogin}, RSA_KEY, {expiresIn: "24h"})
 
             cookies.set("authToken", authToken, { httpOnly: true, maxAge: 3600 * 24 , sameSite: "strict" })

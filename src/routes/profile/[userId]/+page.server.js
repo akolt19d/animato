@@ -3,7 +3,7 @@ import { redirect } from "@sveltejs/kit"
 
 export async function load({ params }){
     const userId = params.userId   
-    const targetUser = await users.findOne({ username: userId }, {
+    const targetUser = await users.findOne({ handle: userId }, {
         projection: {
             _id: 0,
             username: 1,

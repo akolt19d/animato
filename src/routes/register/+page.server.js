@@ -12,11 +12,11 @@ export async function load({ cookies }) {
 }
 
 async function verifyData(data) {
-    const username = data.get('username')
+    const handle = data.get('handle')
     const email = data.get('email')
 
-    const usernameRegex = /\w{1,25}/g
-    const usernameTaken = await users.findOne({ username: username })
+    const handleRegex = /\w{1,25}/g
+    const handleTaken = await users.findOne({ handle: handle })
     const emailTaken = await users.findOne({ email: email })
 
     if(!(emailTaken === null))
@@ -25,15 +25,15 @@ async function verifyData(data) {
         return false;
     }
 
-    if(!(usernameTaken === null))
+    if(!(handleTaken === null))
     {
-        errorMessage = "Username already taken."
+        errorMessage = "handle already taken."
         return false;
     }
 
-    if(!(usernameRegex.test(username) && username.length <= 25))
+    if(!(handleRegex.test(handle) && handle.length <= 25))
     {
-        errorMessage = "Username doesn't match requirements. It must be at most 25 characters, including letters, digits and special characters."
+        errorMessage = "Handle doesn't match requirements. It must be at most 25 characters, including letters, digits and special characters."
         return false
     }
 
@@ -44,11 +44,12 @@ export const actions = {
     default: async ({ request }) => {
         const formData = await request.formData()
         const userData = {
-            username: formData.get('username'),
+            handle: formData.get('handle'),
+            username: formData.get('handle'),
             email: formData.get('email'),
             password: formData.get('password'),
             avatar_url: "",
-            initials: formData.get('username').slice(0, 2).toUpperCase()
+            initials: formData.get('handle').slice(0, 2).toUpperCase()
         }
 
         const flag = await verifyData(formData)

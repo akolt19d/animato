@@ -9,7 +9,7 @@
     let editingAvatar = false 
 
     let username = user?.username
-    let handle = `@${user?.username}`
+    let handle = `@${user?.handle}`
     let email = user?.email
     let avatarUrl = user?.avatar_url
     let initials = user?.initials

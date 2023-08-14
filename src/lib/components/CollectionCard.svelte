@@ -40,7 +40,7 @@
                 </span>
             </div>
             <div>
-                <span class="hover:anchor" use:popup={popupSettings}>@{ author.username }</span>
+                <span class="hover:anchor" use:popup={popupSettings}>@{ author.handle }</span>
             </div>
         </div>
     </div>

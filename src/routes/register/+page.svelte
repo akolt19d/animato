@@ -4,7 +4,7 @@
     import { blur } from 'svelte/transition';
     import { popup } from '@skeletonlabs/skeleton';
 
-    let username = ""
+    let handle = ""
     let email = ""
     let password = ""
     let repeat = ""
@@ -12,11 +12,11 @@
     let invalid = ""
     let visible = false
     let disable = true
-    $: usernameTaken = false
+    $: handleTaken = false
 
-    const usernamePopup = {
+    const handlePopup = {
         event: "hover",
-        target: "usernamePopup",
+        target: "handlePopup",
         placement: "top"
     }
 
@@ -34,23 +34,23 @@
     }
 
     async function filterUsers() {
-        const res = await fetch("/api/usernameAvailable", {
+        const res = await fetch("/api/handleAvailable", {
             method: "POST",
-            body: JSON.stringify({ username }),
+            body: JSON.stringify({ handle }),
             headers: {
                 "Content-Type": "application-json"
             }
         })
-        usernameTaken = await res.json()
+        handleTaken = await res.json()
     }
 
-    $: if(username.length > 0){
+    $: if(handle.length > 0){
         filterUsers()
     } else {
-        usernameTaken = false
+        handleTaken = false
     }
 
-    $: if(username.length > 0 && email.length > 0 && password.length > 0 && password == repeat && !usernameTaken) {
+    $: if(handle.length > 0 && email.length > 0 && password.length > 0 && password == repeat && !handleTaken) {
         disable = false
     } else {
         disable = true
@@ -64,11 +64,11 @@
         <hr class="my-6">
         <form method="POST">
             <label for="nick" class="label">
-                <span>Username</span><br>
+                <span>Handle</span><br>
                 <div class="input-group input-group-divider grid-cols-[auto_1fr] relative">
-                    <input type="text" name="username" class={`input w-80 h-10 p-2 outline-none${usernameTaken ? " input-error" : ""}`} maxlength="25" bind:value={username} required>
-                    {#if username.length > 0}    
-                    <div class={`input-group-shim variant-filled-${usernameTaken ? "error" : "success"} absolute right-0 h-full`} transition:blur={{ duration: 300 }} use:popup={usernamePopup}>{usernameTaken ? "X" : "✓"}</div>
+                    <input type="text" name="handle" class={`input w-80 h-10 p-2 outline-none${handleTaken ? " input-error" : ""}`} maxlength="25" bind:value={handle} required>
+                    {#if handle.length > 0}    
+                    <div class={`input-group-shim variant-filled-${handleTaken ? "error" : "success"} absolute right-0 h-full`} transition:blur={{ duration: 300 }} use:popup={handlePopup}>{handleTaken ? "X" : "✓"}</div>
                     {/if}
                 </div>
             </label>
@@ -96,9 +96,9 @@
     <Alert {...form} on:click={() => { visible = false }}/>
     {/if}
 </section>
-<div class={username.length > 0 ? "" : "opacity-0"}>
-    <div class={`card p-4 variant-filled-${usernameTaken ? "error" : "success"}`} data-popup="usernamePopup">
-        <p>This username is {usernameTaken ? "already taken" : "available"}.</p>
-        <div class={`arrow variant-filled-${usernameTaken ? "error" : "success"}`} />
+<div class={handle.length > 0 ? "" : "opacity-0"}>
+    <div class={`card p-4 variant-filled-${handleTaken ? "error" : "success"}`} data-popup="handlePopup">
+        <p>This handle is {handleTaken ? "already taken" : "available"}.</p>
+        <div class={`arrow variant-filled-${handleTaken ? "error" : "success"}`} />
     </div>
 </div>
