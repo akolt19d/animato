@@ -1,5 +1,7 @@
 <script>
     export let data;
+
+    $: targetUser = data?.targetUser
 </script>
 
-<p>{ data.userId }</p>
+<p>{ targetUser.username }</p>
