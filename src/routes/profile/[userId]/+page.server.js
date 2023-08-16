@@ -1,5 +1,5 @@
 import { users } from "$db/users"
-import { redirect } from "@sveltejs/kit"
+import { error } from "@sveltejs/kit"
 
 export async function load({ params }){
     const userId = params.userId   
@@ -13,7 +13,7 @@ export async function load({ params }){
     })
 
     if(!targetUser)
-        throw redirect(302, "/")
+        throw error(404, "/")
 
     return {
         targetUser: targetUser
