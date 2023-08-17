@@ -6,9 +6,8 @@ export async function load({ params }){
     const targetUser = await users.findOne({ handle: userId }, {
         projection: {
             _id: 0,
-            username: 1,
-            avatar_url: 1,
-            initials: 1
+            password: 0,
+            email: 0
         }
     })
 
