@@ -9,8 +9,7 @@
     let editingAvatar = false 
 
     let username = user?.username
-    let handle = `@${user?.handle}`
-    let email = user?.email
+    let description = user?.description
     let avatarUrl = user?.avatar_url
     let initials = user?.initials
 
@@ -18,8 +17,7 @@
         e.preventDefault()
         editingData = !editingData
         username = user.username
-        handle = `@${user.username}`
-        email = user.email
+        description = user.description
     }
 
     function resetAvatarAfterCancel(e) {
@@ -34,8 +32,8 @@
 <hr class="my-6">
 <div class="mx-auto grid rows-cols-[auto_1fr] gap-12 px-12">
     <div>
-        <h4 class="h4">Edit data</h4>
-        <p class="opacity-40">Customize the things which make you.. you!</p>
+        <h4 class="h4">Public information</h4>
+        <p class="opacity-40">These are the things which will be visible on your <a class="anchor" href={`/profile/${user.handle}`}>profile</a>.</p>
     </div>
     <div class="relative mx-auto">
         <form on:reset={resetValuesAfterCancel}>
@@ -44,14 +42,9 @@
                 <input type="text" name="username" id="username" class="input w-80 h-10 p-2" bind:value={username} disabled={!editingData}>
             </label>
             <br>
-            <label for="handle" class="label">
-                <span>Handle</span><br>
-                    <input type="text" name="handle" id="handle" class="input w-80 h-10 p-2" bind:value={handle} disabled={!editingData}>
-            </label>
-            <br>
-            <label for="email" class="label">
-                <span>E-mail</span><br>
-                <input type="email" name="email" id="email" class="input w-80 h-10 p-2" bind:value={email} disabled={!editingData}>
+            <label for="description" class="label">
+                <span>Description</span><br>
+                    <textarea name="description" id="description" rows="4" class="input w-80 p-2" bind:value={description} disabled={!editingData} />
             </label>
             <br>
             {#if editingData}
