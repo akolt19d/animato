@@ -10,7 +10,7 @@
         <span class="opacity-40 text-xs">@{ user?.handle }</span>
     </div>
     <p class="text-sm my-2 text-center">
-        This is a built-in account which allows the creators of the website to test new features :D
+        { user?.description }
     </p>
     <div class="flex flex-row gap-2 opacity-40 justify-evenly">
         <span class="flex items-center">

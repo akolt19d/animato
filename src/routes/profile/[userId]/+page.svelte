@@ -52,7 +52,7 @@
             <h2 class="h2 mt-2">{ targetUser.username }</h2>
             <h4 class="h4 opacity-40">@{ targetUser.handle }</h4>
             <p class="my-2 text-sm">
-                This is a built-in account which allows the creators of the website to test new features :D
+                { targetUser.description }
             </p>
             <ul class="mx-auto text-sm flex justify-around opacity-50">
                 {#each list as el}
@@ -61,6 +61,9 @@
                     </li>
                 {/each}
             </ul>
+            <p class="my-2 text-sm opacity-50 flex items-center justify-center gap-1">
+                <iconify-icon icon="mingcute:calendar-month-line"></iconify-icon>Joined in { Intl.DateTimeFormat("en-US", { year: "numeric", month: "long" }).format(targetUser.creationDate) }
+            </p>
         </div>
         <div class="pl-10 relative overflow-x-hidden">
             <p class="h3">Models <a href="/explore/models"><iconify-icon icon="mingcute:external-link-line"></iconify-icon></a></p> 
