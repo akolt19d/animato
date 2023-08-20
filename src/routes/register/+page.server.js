@@ -48,8 +48,10 @@ export const actions = {
             username: formData.get('handle'),
             email: formData.get('email'),
             password: formData.get('password'),
+            description: `Hi! It's me, ${formData.get('handle')}!`,
             avatar_url: "",
-            initials: formData.get('handle').slice(0, 2).toUpperCase()
+            initials: formData.get('handle').slice(0, 2).toUpperCase(),
+            creationDate: new Date()
         }
 
         const flag = await verifyData(formData)
