@@ -2,15 +2,23 @@ import { users } from '$db/users'
 import { fail, redirect, error } from '@sveltejs/kit'
 
 export const actions = {
-    pubInfo: async ({ request, cookies }) => {
+    pubInfo: async ({ request, cookies, locals }) => {
         const authToken = cookies.get("authToken")
-        if(authToken)
+        if(!authToken)
             throw error(404)
 
+        const { user } = locals
         const formData = await request.formData()
         const username = formData.get("username")
         const description = formData.get("description")
 
-        console.log(username, description)
+        const result = await users.updateOne({ handle: user.handle }, { 
+            $set: {
+                username: username,
+                description: description
+            }
+         })
+
+        console.log(result)
     }
 }
