@@ -36,7 +36,7 @@
         <p class="opacity-40">These are the things which will be visible on your <a class="anchor" href={`/profile/${user.handle}`}>profile</a>.</p>
     </div>
     <div class="relative mx-auto">
-        <form on:reset={resetValuesAfterCancel}>
+        <form on:reset={resetValuesAfterCancel} method="post" action="?/pubInfo">
             <label for="username" class="label">
                 <span>Username</span><br>
                 <input type="text" name="username" id="username" class="input w-80 h-10 p-2" bind:value={username} disabled={!editingData}>
