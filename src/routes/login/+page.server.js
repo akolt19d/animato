@@ -15,16 +15,18 @@ export const actions = {
         const formData = await request.formData()
         const loginData = {
             email: await formData.get("email"),
-            password: await formData.get("password")
+            password: await formData.get("password"),
+            remember: await formData.get("remember")
         }
-
+        
         const user = await users.findOne({email: loginData.email})
         if(loginData.password == user.password)
         {
+            console.log(loginData.remember)
             const { password, _id, ...userAttemptingLogin } = user
-            const authToken = jwt.sign({user: userAttemptingLogin}, RSA_KEY, {expiresIn: "24h"})
+            const authToken = jwt.sign({user: userAttemptingLogin}, RSA_KEY, {expiresIn: loginData.remember ? "365d" : "24h"})
 
-            cookies.set("authToken", authToken, { httpOnly: true, maxAge: 3600 * 24 , sameSite: "strict" })
+            cookies.set("authToken", authToken, { httpOnly: true, maxAge: loginData.remember ? 3600 * 24 * 365 : 3600 * 24 , sameSite: "strict" })
 
             throw redirect(302, "/")
         }

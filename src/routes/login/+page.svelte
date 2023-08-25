@@ -31,6 +31,11 @@
                 <input type="password" name="password" class="input w-80 h-10 p-2"><br>
                 <a href="/" class="anchor">Forgot your password?</a>
             </label>
+            <br>
+            <label for="remember" class="label flex items-center space-x-1">
+                <input type="checkbox" name="remember" id="remember" class="checkbox">
+                <span>Remember me</span>
+            </label>
             <button type="submit" class="btn variant-filled-secondary my-4">Log in</button><br>
             <a href="/register" class="anchor">Don't have an account?</a>
         </form>
